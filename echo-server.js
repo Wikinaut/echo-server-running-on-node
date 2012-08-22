@@ -13,6 +13,7 @@ var io = require('socket.io').listen(server);
 
 server.listen(9002);
 
+/*
 io.set('transports', [
     'websocket'
   , 'flashsocket'
@@ -20,12 +21,15 @@ io.set('transports', [
   , 'xhr-polling'
   , 'jsonp-polling'
 ]);
+*/
+
+io.set('transports', [ 'jsonp-polling'] );
 
 // https://github.com/LearnBoost/socket.io/issues/283 
 // lower the number to lessen the debug output
 // log level 0 or 1 : info output
 // 2: debug output
-io.set( 'log level', 2 );
+io.set( 'log level', 0 );
 
 app.get('/', function (req, res) {
   res.sendfile(__dirname + '/client.html');

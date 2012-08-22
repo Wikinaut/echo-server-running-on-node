@@ -59,17 +59,31 @@ socket.on('user message', function (msg) {
 
 });
 
+
 $(function () {
 
-  $( "body" ).keypress( function(event) {
+  // Prevent backspace in a dropdown from acting as the back button, with jQuery
+  // http://www.codeproject.com/Articles/35545/Prevent-backspace-in-a-dropdown-from-acting-as-the
+  $( document ).keydown( function(event) {
+    if (event.keyCode == 8) {
+	socket.emit( 'user message', 8 );
+        return false;
+    }
+  });
+ 
+  $( document ).keypress( function(event) {
+    if (event.keyCode == 8) {
+        return false;
+    }
     event.preventDefault();
+    event.stopPropagation();
     if ( event.keyCode == 27 ) {
 	socket.emit( 'user message', 27);
     } else {
 	socket.emit( 'user message', event.which );
     }
   });
-
+  
 });
 
 </script>
