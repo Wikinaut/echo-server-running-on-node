@@ -1,0 +1,77 @@
+<html>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<style type="text/css">
+.box {
+	border:1px solid grey;
+}
+</style>
+<body>
+<div style="background:lightblue;color:black;font-weight:bold;font-style:italic;font-size:90%;border:1px solid lightblue;border-bottom:0px;padding:3px;">
+Server messages
+</div>
+<div id="message" style="background:lightyellow;color:black;font-weight:normal;border:1px solid gainsboro;border-top:0px;padding:3px;"></div>
+<br/>
+<div style="background:lightblue;color:black;font-weight:bold;font-style:italic;font-size:90%;border:1px solid lightblue;border-bottom:0px;padding:3px;">
+Terminal screen (your characters are sent to the server and echoed here. ESC stops the server for test purposes.)
+</div>
+<div id="terminal" style="background:lightyellow;color:black;font-weight:normal;border:1px solid gainsboro;border-top:0px;padding:3px;height:90%"></div>
+<script>
+
+var socket = io.connect( document.location );
+
+// var cursor = String.fromCharCode( 0x2588 ); // black cursor block
+var cursor = "_";
+var $cursor = $( "<span cursor=\"1\" style=\"text-decoration:blink;\">" + cursor + "</span>" );
+
+socket.on('connect', function () {
+  $("#message").html( "client started. Please start the server! Otherwise it will not work." );
+  $("#terminal").append( $cursor );
+});
+
+socket.on('announcement', function(msg) {
+  $("#message").html( "[announcement] " + msg );
+});
+
+socket.on('disconnect', function(msg) {
+  $("#message").html( "[disconnected] Socket disconnected. Server " + msg );
+});
+
+socket.on('user message', function (msg) {
+
+  $( "[cursor]" ).remove(); // remove cursor symbol
+
+  switch (msg) {
+ 
+  case 13:	c = "<br/>";
+		break;
+
+  case 8:	c = "";
+		var buf = $("#terminal").html();
+		$("#terminal").html( buf.substring( 0, buf.length - 1 ) );
+		break;
+ 
+  default: 	c = String.fromCharCode( msg );
+
+  }
+
+  $('#terminal').html( $('#terminal').html() + c  ).append( $cursor );
+
+});
+
+$(function () {
+
+  $( "body" ).keypress( function(event) {
+    event.preventDefault();
+    if ( event.keyCode == 27 ) {
+	socket.emit( 'user message', 27);
+    } else {
+	socket.emit( 'user message', event.which );
+    }
+  });
+
+});
+
+</script>
+</body>
+</html>
