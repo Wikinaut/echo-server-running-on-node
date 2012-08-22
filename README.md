@@ -20,4 +20,4 @@ Requirements:
 * express (npm install express )
 
 Start the server:
-* su nodeuser -v "node echo-server.js"
+* su nodeuser -c "node echo-server.js"
