@@ -23,4 +23,4 @@ Start the server:
 * su nodeuser -c "node echo-server.js"
 
 Screenshot:
-![Alt text](/echo-server-running-on-node/blob/master/20120822_echo-server-runninng-on-node_screenshot.png "Screenshot of echo-server-running-on-node")
+![Alt text](https://raw.github.com/Wikinaut/echo-server-running-on-node/master/20120822_echo-server-runninng-on-node_screenshot.png "Screenshot of echo-server-running-on-node")
