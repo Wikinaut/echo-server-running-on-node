@@ -13,6 +13,11 @@ The script handles currently these three control characters:
 Requirements:
 
 * node ( wget node; ./configure; make; make install )
-* git clone echo-server
+* git clone echo-server-running-on-node echo-server
+* add a user for node scripts, e.g. nodeuser
+* chown -R nodeuser echo-server
 * socket.io ( npm install socket.io )
 * express (npm install express )
+
+Start the server:
+* su nodeuser -v "node echo-server.js"
