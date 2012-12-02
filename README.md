@@ -10,7 +10,16 @@ The script handles currently these three control characters:
 * backspace (back space)
 * ESC (socket stops itself at server side when ESC is received from the client)
 
-Requirements:
+#### automatic start and installation of pre-requisites
+Attribution: the installation code is shamelessy borrowed and modified from the nice https://github.com/ether/etherpad-lite project.
+
+* git clone git://github.com/Wikinaut/echo-server-running-on-node.git echo-server
+* add a user for node scripts, e.g. nodeuser
+* su nodeuser bin/run.sh
+
+#### manual start
+
+Requirements (the hard and manual way to install, step-by-step)
 
 * node ( wget node; ./configure; make; make install )
 * git clone echo-server-running-on-node echo-server
@@ -19,7 +28,7 @@ Requirements:
 * socket.io ( npm install socket.io )
 * express (npm install express )
 
-Start the server:
+Start the server manually:
 * su nodeuser -c "node echo-server.js"
 
 Screenshot:
