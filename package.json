@@ -1,0 +1,16 @@
+{
+  "name"           : "echo-server-running-on-node",
+  "description"    : "A simple echo server which echoes characters via a node server",
+  "homepage"       : "https://github.com/Wikinaut/echo-server-running-on-node",
+  "keywords"       : ["echo", "server", "echo-server"],
+  "dependencies"   : {
+                      "socket.io"           : "0.9.x",
+                      "express"             : "3.x",
+                      "npm"                 : "1.1.x",
+                     },
+  "bin":             { "echo-server-running-on-node": "./echo-server.js" },
+  "engines"        : { "node" : ">=0.6.0",
+                       "npm"  : ">=1.0"
+                     }, 
+  "version"        : "1.000"
+}
