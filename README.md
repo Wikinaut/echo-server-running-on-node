@@ -13,6 +13,8 @@ The script handles currently these three control characters:
 #### automatic start and installation of pre-requisites
 Attribution: the installation code is shamelessy borrowed and modified from the nice https://github.com/ether/etherpad-lite project.
 
+See package.json for requirements which will be installed automatically.
+
 * git clone git://github.com/Wikinaut/echo-server-running-on-node.git echo-server
 * add a user for node scripts, e.g. nodeuser
 * su nodeuser bin/run.sh
@@ -27,6 +29,7 @@ Requirements (the hard and manual way to install, step-by-step)
 * chown -R nodeuser echo-server
 * socket.io ( npm install socket.io )
 * express (npm install express )
+* graceful-fs (npm install graceful-fs) - only needed if you enable SSL support
 
 Start the server manually:
 * su nodeuser -c "node echo-server.js"
