@@ -11,5 +11,10 @@ pids
 logs
 results
 
+*.key
+*.crt
+
+*.diff
+
 node_modules
 npm-debug.log

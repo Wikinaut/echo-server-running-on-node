@@ -6,7 +6,8 @@
   "dependencies"   : {
                       "socket.io"           : "0.9.x",
                       "express"             : "3.x",
-                      "npm"                 : "1.1.x"
+                      "npm"                 : "1.1.x",
+                      "graceful-fs"         : "1.1.5"
                      },
   "bin":             { "echo-server-running-on-node" : "./echo-server.js" },
   "engines"        : { "node" : ">=0.6.0",

@@ -1,5 +1,6 @@
 /**
 * Socket.IO server (single process only)
+* http or https
 */
 var express = require("express");
 
@@ -7,11 +8,53 @@ var express = require("express");
 // https://gist.github.com/1036976 very simple socket.io@0.7 echo server 
 
 var app = express();
-var http = require('http');
-var server = http.createServer(app);
+var port = 9002;
+
+// Node native SSL support
+// make sure to have the correct file access permissions set
+// to disable set to false
+var settings = false; // http
+
+/*
+// How to generate self-signed server certificates
+// https://github.com/Wikinaut/echo-server-running-on-node/wiki/How-to-set-up-SSL
+var settings = { "ssl" :
+	          {
+		   "key"  : "/path-to-your/node-server.key",
+		   "cert" : "/path-to-your/node-server.crt"
+		  }
+        }; // https
+*/
+
+if (settings.ssl) {
+
+  var fs = require("graceful-fs");
+
+  options = {
+    key: fs.readFileSync( settings.ssl.key ),
+    cert: fs.readFileSync( settings.ssl.cert )
+  };
+    
+  var https = require('https');
+  var server = https.createServer(options, app);
+
+  console.log( "SSL -- enabled");
+  console.log( "SSL -- server key file: " + settings.ssl.key );
+  console.log( "SSL -- Certificate Authority's certificate file: " + settings.ssl.cert );
+
+} else {
+
+  var http = require('http');
+  var server = http.createServer(app);
+
+  console.warn( "SSL -- not enabled!" );
+
+}
+
+
 var io = require('socket.io').listen(server);
 
-server.listen(9002);
+server.listen(port);
 
 /*
 io.set('transports', [
