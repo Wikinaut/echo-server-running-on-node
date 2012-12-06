@@ -2,19 +2,13 @@
 
 echo "Ensure that all dependencies are up to date..."
 
-#Move to the folder where ep-lite is installed
+#Move to the folder where echo-server is installed
 cd `dirname $0`
 
 #Was this script started in the bin folder? if yes move out
 if [ -d "../bin" ]; then
   cd "../"
 fi
-
-#Is wget installed?
-hash curl > /dev/null 2>&1 || { 
-  echo "Please install curl" >&2
-  exit 1 
-}
 
 #Is node installed?
 hash node > /dev/null 2>&1 || { 
