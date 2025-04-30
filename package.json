@@ -5,7 +5,7 @@
   "keywords"       : ["echo", "server", "echo-server"],
   "dependencies"   : {
                       "socket.io"           : "0.9.x",
-                      "express"             : "3.x",
+                      "express"             : "4.x",
                       "npm"                 : "1.1.x",
                       "graceful-fs"         : "1.1.5"
                      },
